@@ -7,9 +7,12 @@
 :root {
   --grey-800: #1a1a1a;
   --grey-700: #333333;
-  --white-700: #e0e0e0;
+  --grey-100: #e0e0e0;
   --pink-500: #ff3e72;
   --pink-300: #ff77a9;
+  --pink-200: #ff93bb;
+  --pink-100: #ffbcd5;
+  --bg-contrast: #ffffff;
 }
 
 body {

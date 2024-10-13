@@ -1,19 +1,46 @@
 "use client";
+import { FullClose } from "@/assets/icons";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import styles from "./styles.module.css";
 
-const suggestionsList = ["css3", "html5", "javascript", "react", "next"];
+const suggestionsList = [
+  "CSS3",
+  "HTML5",
+  "JAVASCRIPT",
+  "React.js",
+  "Next.js",
+  "PHP",
+  "Laravel",
+  "Vue.js",
+  "Angular",
+  "React Native",
+];
 
 export default function Projects(suggestions: string[]) {
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>("+ Adicionar tag");
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
-  const [showInput, setShowInput] = useState<boolean>(true);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    if (inputValue === "+ Adicionar tag") {
+      setInputValue("");
+    }
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    if (inputValue === "") {
+      setInputValue("+ Adicionar tag");
+    }
+  };
 
   // Atualiza a lista de sugestões com base no input
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setInputValue(value);
+    const regex = /\+\sAdicionar\s+tag/;
+    setInputValue(value.replace(regex, ""));
 
     if (value.length > 0) {
       const filtered = suggestionsList.filter((suggestion) =>
@@ -30,19 +57,13 @@ export default function Projects(suggestions: string[]) {
     if (!tags.includes(tag)) {
       setTags([...tags, tag]);
     }
-    setInputValue("");
+    setInputValue("+ Adicionar tag");
     setFilteredSuggestions([]);
-    setShowInput(false); // Oculta o campo de input após adicionar a tag
   };
 
   // Remove uma tag ao clicar no botão de deletar
   const handleDeleteTag = (tagToDelete: string) => {
     setTags(tags.filter((tag) => tag !== tagToDelete));
-  };
-
-  // Mostra o input para adicionar mais tags
-  const handleShowInput = () => {
-    setShowInput(true);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -57,35 +78,22 @@ export default function Projects(suggestions: string[]) {
         {tags.map((tag, index) => (
           <div key={index} className={styles.tag}>
             {tag}
-            <button onClick={() => handleDeleteTag(tag)}>x</button>
+            <button onClick={() => handleDeleteTag(tag)}>
+              <FullClose size="1.25rem" />
+            </button>
           </div>
         ))}
-        {/* {showInput && (
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Adicionar nova tag"
-            className={styles.input}
-          />
-        )} */}
         <input
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          placeholder="Adicionar nova tag"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           className={styles.input}
         />
-        {!showInput && (
-          <button className={styles.addTagBtn} onClick={handleShowInput}>
-            + Adicionar tag
-          </button>
-        )}
       </div>
 
-      {/* Lista de sugestões autocompletadas */}
       {filteredSuggestions.length > 0 && (
         <ul className={styles.suggestionsList}>
           {filteredSuggestions.map((suggestion, index) => (

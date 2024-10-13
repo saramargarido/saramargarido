@@ -1,65 +1,82 @@
 .autocompleteTagInput {
   display: flex;
+  position: relative;
   width: 100%;
-}
 
-.tagsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  border: 1px solid #ccc;
-  padding: 5px;
-}
+  & .tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 5px;
+    border: 1px solid var(--grey-100);
+    border-radius: 0.5rem;
+    padding: 1rem;
 
-.tag {
-  background-color: #ff3e72;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-}
+    & .input {
+      all: unset;
+      color: var(--pink-500);
+      cursor: pointer;
+      padding: 5px;
+    }
 
-.tag button {
-  background: none;
-  border: none;
-  color: white;
-  margin-left: 5px;
-  cursor: pointer;
-}
+    & .tag {
+      background-color: var(--pink-500);
+      color: var(--bg-contrast);
+      padding: 0.5rem 0.75rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
 
-.addTagBtn {
-  background-color: transparent;
-  border: none;
-  color: #ff3e72;
-  cursor: pointer;
-}
+      & button {
+        background: none;
+        border: none;
+        color: var(--pink-100);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: color 300ms ease;
 
-.input {
-  border: none;
-  outline: none;
-  padding: 5px;
-  width: 100%;
-}
+        &:hover {
+          color: var(--bg-contrast);
+        }
+      }
+    }
+  }
 
-.suggestionsList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border: 1px solid #ccc;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 10;
-}
+  & .suggestionsList {
+    background-color: var(--bg-contrast);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--grey-100);
+    border-radius: 1rem;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    width: 100%;
+    max-width: 10rem;
+    z-index: 10;
 
-.suggestionsList li {
-  padding: 5px;
-  cursor: pointer;
-}
+    & li {
+      padding: 1rem;
+      cursor: pointer;
 
-.suggestionsList li:hover {
-  background-color: #f0f0f0;
+      &:first-child {
+        border-radius: 1rem 1rem 0 0;
+      }
+      &:last-child {
+        border-radius: 0 0 1rem 1rem;
+      }
+      &:only-child {
+        border-radius: 1rem;
+      }
+
+      transition: background-color 300ms ease;
+
+      &:hover {
+        background: var(--grey-100);
+      }
+    }
+  }
 }
