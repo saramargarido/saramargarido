@@ -1,0 +1,65 @@
+.autocompleteTagInput {
+  display: flex;
+  width: 100%;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.tag {
+  background-color: #ff3e72;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.tag button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.addTagBtn {
+  background-color: transparent;
+  border: none;
+  color: #ff3e72;
+  cursor: pointer;
+}
+
+.input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+}
+
+.suggestionsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 10;
+}
+
+.suggestionsList li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.suggestionsList li:hover {
+  background-color: #f0f0f0;
+}

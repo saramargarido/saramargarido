@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --grey-800: #1a1a1a;
+  --grey-700: #333333;
+  --white-700: #e0e0e0;
+  --pink-500: #ff3e72;
+  --pink-300: #ff77a9;
+}
+
+body {
+  background-color: var(--grey-800);
+  width: 100%;
+}
